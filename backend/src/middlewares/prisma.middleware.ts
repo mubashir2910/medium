@@ -10,7 +10,7 @@ export const setPrisma = async (c: Context, next: Next) => {
 
   // Store prisma instance in context
   c.set('prisma', prisma);
-console.log("Inside setPrisma");
+//console.log("Inside setPrisma");
   await next();
 
   // Optionally disconnect after the request

@@ -9,6 +9,7 @@ import { userRouter } from './routes/user.routes';
 import { blogRouter } from './routes/blog.router';
 import { authMiddleware } from './middlewares/auth.middleware';
 import { setPrisma } from './middlewares/prisma.middleware';
+import {cors} from 'hono/cors'
 
 const app = new Hono<{
 	Bindings: {
@@ -19,6 +20,8 @@ const app = new Hono<{
     userId: string
   }
 }>().basePath('/api/v1');
+
+app.use('/*',cors());
 
 app.get('/', (c) => c.text('Hello from Hono! 🚀'));
 

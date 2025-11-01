@@ -30,6 +30,7 @@ userRouter.post('/signup', async(c:Context) => {
   try{
     const user = await prisma.user.create({
       data:{
+        name: body.name || null,
         email:body.email,
         password: hashedPassword
       }
@@ -53,7 +54,7 @@ userRouter.post('/signin', async (c:Context) => {
     c.status(400);
     return c.json({ error: "Email and password are required" });
   }
-    const {success} = signupInput.safeParse(body);
+  const {success} = signupInput.safeParse(body);
   if(!success){
     c.status(411);
     return c.json({message:"Inputs are incorrect"});
